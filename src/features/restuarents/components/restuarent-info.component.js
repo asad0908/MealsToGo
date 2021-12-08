@@ -13,6 +13,7 @@ const RestaurentCardCover = styled(Card.Cover)`
 
 const RestuarentCardTitle = styled.Text`
   color: ${(props) => props.theme.colors.ui.primary};
+  font-family: ${(props) => props.theme.fonts.body};
 `;
 
 const RestuarentInfoComponent = ({ restuarent = {} }) => {
