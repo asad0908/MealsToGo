@@ -5,6 +5,7 @@ import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Image, Text, View } from "react-native";
+import Spacer from "../../../components/spacer/spacer.component";
 
 const RestuarentCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -58,7 +59,6 @@ const RestuarentInfoComponent = ({ restuarent = {} }) => {
   } = restuarent;
 
   const ratingArray = Array.from(new Array(4));
-  console.log(ratingArray);
 
   return (
     <RestuarentCard elevation={5}>
@@ -73,13 +73,13 @@ const RestuarentInfoComponent = ({ restuarent = {} }) => {
           </RatingLeft>
           <RatingRight>
             {isClosedTemporarily && (
-              <Text variant="label" style={{ color: "red", fontSize: 12 }}>
+              <Text variant="label" style={{ color: "red", fontSize: 11 }}>
                 CLOSED TEMPORARILY
               </Text>
             )}
-            <View style={{ paddingLeft: 16 }} />
+            <Spacer varient="left.large" />
             {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            <View style={{ paddingLeft: 16 }} />
+            <Spacer varient="left.large" />
             <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
           </RatingRight>
         </Rating>
