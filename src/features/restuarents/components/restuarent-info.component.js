@@ -1,49 +1,19 @@
 import React from "react";
 import { Card } from "react-native-paper";
-import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
-import { Image, Text } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
-
-const RestuarentCard = styled(Card)`
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const RestaurentCardCover = styled(Card.Cover)`
-  padding: ${(props) => props.theme.space[3]};
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const RestuarentCardTitle = styled.Text`
-  color: ${(props) => props.theme.colors.ui.primary};
-  font-family: ${(props) => props.theme.fonts.heading};
-  font-size: ${(props) => props.theme.fontSizes.body};
-`;
-
-const Address = styled.Text`
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
-`;
-
-const Rating = styled.View`
-  padding-top: ${(props) => props.theme.space[2]};
-  padding-bottom: ${(props) => props.theme.space[2]};
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const RatingLeft = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-const RatingRight = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
+import { Text } from "../../../components/typography/text.component";
+import {
+  RestuarentCard,
+  RestaurentCardCover,
+  Address,
+  Rating,
+  RatingLeft,
+  RatingRight,
+  ImageIcon,
+} from "./restuarent-info-styles";
 
 const RestuarentInfoComponent = ({ restuarent = {} }) => {
   const {
@@ -64,7 +34,7 @@ const RestuarentInfoComponent = ({ restuarent = {} }) => {
     <RestuarentCard elevation={5}>
       <RestaurentCardCover source={{ uri: photos[0] }} />
       <Card.Content>
-        <RestuarentCardTitle>{name}</RestuarentCardTitle>
+        <Text variant="label">{name}</Text>
         <Rating>
           <RatingLeft>
             {ratingArray.map((value, index) => (
@@ -73,7 +43,7 @@ const RestuarentInfoComponent = ({ restuarent = {} }) => {
           </RatingLeft>
           <RatingRight>
             {isClosedTemporarily && (
-              <Text variant="label" style={{ color: "red", fontSize: 11 }}>
+              <Text variant="error" style={{ color: "red", fontSize: 12.5 }}>
                 CLOSED TEMPORARILY
               </Text>
             )}
@@ -81,7 +51,7 @@ const RestuarentInfoComponent = ({ restuarent = {} }) => {
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
             <Spacer position="left" size="large">
-              <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+              <ImageIcon source={{ uri: icon }} />
             </Spacer>
           </RatingRight>
         </Rating>
