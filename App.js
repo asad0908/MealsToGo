@@ -48,31 +48,29 @@ export default function App() {
     );
   };
 
+  const TAB_ICON = {
+    Restuarents: "md-restaurant",
+    Maps: "md-map",
+    Settings: "md-settings",
+  };
+
+  const screenOptions = ({ route }) => {
+    return {
+      headerShown: false,
+      tabBarIcon: ({ color, size }) => {
+        let iconName = TAB_ICON[route.name];
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: "tomato",
+      tabBarInactiveTintColor: "gray",
+    };
+  };
+
   return (
     <>
       <NavigationContainer>
         <ThemeProvider theme={theme}>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              headerShown: false,
-              tabBarIcon: ({ color, size }) => {
-                let iconName;
-
-                if (route.name === "Restuarents") {
-                  iconName = "md-restaurant";
-                } else if (route.name === "Maps") {
-                  iconName = "md-map";
-                } else if (route.name === "Settings") {
-                  iconName = "md-settings";
-                }
-
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-            })}
-          >
+          <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen name="Restuarents" component={RestuarentsScreen} />
             <Tab.Screen name="Maps" component={MapsComponent} />
             <Tab.Screen name="Settings" component={SettingsComponent} />
